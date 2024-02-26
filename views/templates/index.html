@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/main.css">
+  <script type="text/javascript" src="/eel.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+
+<body>
+  <div class="container mt-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+    <div class="container-fluid fs-2 text-center bg-dark bg-opacity-10 border border-dark rounded mb-2"> Expense Tracker
+    </div>
+    <div class="row bg-secondary bg-opacity-10 border border-secondary rounded mx-1">
+      <form class="col-md-auto col-sm-12" id="expense_form">
+        <input type="hidden" name="id" id="id">
+        <div class="container p-1">
+          <div class="input-group mt-2 mb-2">
+            <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                fill="currentColor" class="bi bi-calendar2-date" viewBox="0 0 16 16">
+                <path
+                  d="M6.445 12.688V7.354h-.633A12.6 12.6 0 0 0 4.5 8.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23" />
+                <path
+                  d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z" />
+                <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5z" />
+              </svg></span>
+            <div class="form-floating">
+              <input type="date" class="form-control" id="Date_range" placeholder="Date" required>
+              <label for="Date_range">Date</label>
+            </div>
+          </div>
+          <div class="input-group mb-2">
+            <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                fill="currentColor" class="bi bi-card-list" viewBox="0 0 16 16">
+                <path
+                  d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
+                <path
+                  d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8m0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0" />
+              </svg></span>
+            <div class="form-floating">
+              <textarea class="form-control" placeholder="Description" id="description" required></textarea>
+              <label for="description">Description</label>
+            </div>
+          </div>
+          <div class="input-group mb-2">
+            <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                fill="currentColor" class="bi bi-currency-rupee" viewBox="0 0 16 16">
+                <path
+                  d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+              </svg></span>
+            <div class="form-floating">
+              <input type="number" class="form-control" placeholder="Amount" id="amount" required></input>
+              <label for="amount">Amount</label>
+            </div>
+          </div>
+          <div class="input-group mb-2">
+            <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                fill="currentColor" class="bi bi-person-up" viewBox="0 0 16 16">
+                <path
+                  d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.354-5.854 1.5 1.5a.5.5 0 0 1-.708.708L13 11.707V14.5a.5.5 0 0 1-1 0v-2.793l-.646.647a.5.5 0 0 1-.708-.708l1.5-1.5a.5.5 0 0 1 .708 0M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
+                <path
+                  d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1z" />
+              </svg></span>
+            <div class="form-floating">
+              <input type="text" class="form-control" placeholder="Payee" id="payee" required></input>
+              <label for="payee">Payee</label>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                fill="currentColor" class="bi bi-wallet" viewBox="0 0 16 16">
+                <path
+                  d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a1.99 1.99 0 0 1-1-.268M1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1" />
+              </svg></span>
+            <select class="form-select form-select-md" aria-label="Select Payment Mode" required id="payment_mode">
+              <option selected disabled value="">Select Mode of Payment</option>
+              <option value="Cash">Cash</option>
+              <option value="Card">Card</option>
+              <option value="Gpay">Gpay</option>
+              <option value="UPI">UPI</option>
+              <option value="Cheque">Cheque</option>
+            </select>
+          </div>
+          <hr class="border border-secondary border-2 opacity-40">
+          <div class="d-grid gap-3 mb-3">
+            <button id="add_expense" type="submit" class="btn btn-secondary btn-md" onclick="save_expense_js();">Add
+              Expense</button>
+            <button id="edit_expense" type="submit" class="btn btn-outline-secondary btn-md"
+              onclick="edit_expense_js();" style="display: none;">Edit Expense</button>
+            <button id="split_expense" type="button" class="btn btn-secondary btn-md" data-bs-toggle="modal"
+              data-bs-target="#split_expense_modal">Split Expense</button>
+            <button id="delete_select_expense" type="button" class="btn btn-secondary btn-md" disabled
+              onclick="delete_select_expense_js();">Delete Selected Expenses</button>
+            <button type="button" class="btn btn-secondary btn-md">Delete All Expense</button>
+            <!-- <button type="button" class="btn btn-secondary btn-md" data-bs-toggle="modal"
+              data-bs-target="#select_expenses_model">View Selected Expense's Details</button>
+            <button type="button" class="btn btn-secondary btn-md">Edit Selected Expense</button> -->
+            <button type="button" class="btn btn-secondary btn-md" id="download_expense">Download</button>
+          </div>
+          <hr class="border border-secondary border-2 opacity-40">
+          <div class="d-grid gap-3 mb-3">
+            <div class="form-floating">
+              <input type="text" class="form-control" placeholder="Total Expense" id="total_expense" readonly></input>
+              <label for="payee">Total Expense</label>
+            </div>
+          </div>
+
+        </div>
+      </form>
+      <div class="col">
+        <div class="container table-responsive overflow-auto my-2" style="height: 800px;">
+          <div class="row">
+            <div class="col-4">
+              <div class="input-group mb-2 mt-1">
+                <select class="form-select" id="selectmonth" onchange="select_month()">
+                  <option selected value="2">All</option>
+                  <option value="0">This Month</option>
+                  <option value="-1">Last Month</option>
+                </select>
+              </div>
+            </div>
+            <div class="col">
+              <div class="input-group mb-2 mt-1 w-75 ms-auto">
+                <input type="text" class="form-control" placeholder="Search"
+                  aria-label="Text input with dropdown button" onkeyup="search_expenses()" id="search">
+                <select class="btn btn-outline-secondary pe-1" id="selectsearch">
+                  <option value="1">Date</option>
+                  <option value="2" selected>Payee</option>
+                  <option value="3">Description</option>
+                  <option value="4">Amount</option>
+                  <option value="5">Payment</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <table class="table table-hover table-striped mt-1" id="tableData">
+            <thead>
+              <tr>
+                <th scope="col"><input class="form-check-input" type="checkbox" value="'+ id + '" id="all_checked" />
+                </th>
+                <th scope="col">Date</th>
+                <th scope="col">Payee</th>
+                <th scope="col">Description</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Mode of Payment</th>
+                <th scope="col">Operation</th>
+              </tr>
+            </thead>
+            <tbody id="expense_tbody" class="table-group-divider">
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="split_expense_modal" tabindex="-1" aria-labelledby="split_expense_modal"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5">Split Bill</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="form modal-body" id="split_form">
+            <div class="row">
+              <div class="col-auto">
+                <div class="input-group mb-2">
+                  <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                      fill="currentColor" class="bi bi-currency-rupee" viewBox="0 0 16 16">
+                      <path
+                        d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+                    </svg></span>
+                  <div class="form-floating">
+                    <input type="number" class="form-control" placeholder="Paid Amount" id="paid_amount" required
+                      onchange="compute_amount()"></input>
+                    <label for="paid_amount">Paid Amount</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-auto">
+                <div class="input-group mb-2">
+                  <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                      fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
+                      <path
+                        d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
+                      <path
+                        d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" />
+                    </svg></span>
+                  <div class="form-floating">
+                    <input type="number" class="form-control" placeholder="Total Person" id="total_person" required
+                      onchange="compute_amount()"></input>
+                    <label for="total_person">Total Person</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-auto">
+                <div class="input-group mb-2">
+                  <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                      fill="currentColor" class="bi bi-patch-plus" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+                        d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5" />
+                      <path
+                        d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911z" />
+                    </svg></span>
+                  <div class="form-floating">
+                    <input type="number" class="form-control" placeholder="Extra Amount" id="extra_amount"
+                      onchange="compute_amount()"></input>
+                    <label for="extra_amount">Extra Amount</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-auto">
+                <div class="input-group mb-2">
+                  <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                      fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
+                      <path
+                        d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
+                      <path
+                        d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" />
+                    </svg></span>
+                  <div class="form-floating">
+                    <input type="number" class="form-control" placeholder="Split Amount" id="split_amount"
+                      readonly></input>
+                    <label for="split_amount">Split Amount</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="add_split_amount()">Add
+              Amount</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="../js/main.js"></script>
+
+</html>
