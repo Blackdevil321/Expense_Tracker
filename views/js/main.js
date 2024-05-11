@@ -213,10 +213,17 @@ function delete_return(status) {
     location.href = "index.html";
   }
 }
+
 function delete_select_expense_js() {
   if (confirm("Are you sure you want to delete the data?")) {
     let ids = this.getCheckRecords()
     eel.delete_data(ids)
+  }
+}
+
+function delete_all_expense_js() {
+  if (confirm("Are you sure you want to delete the data?")) {
+    eel.delete_all_data()
   }
 }
 

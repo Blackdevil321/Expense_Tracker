@@ -6,7 +6,7 @@ from datetime import datetime
 import sqlite3
 import pyautogui
 
-from views.models.expense import showallrecords, save_newexpense, show_selectedExpense, update_expense, delete_expense, delete_records
+from views.models.expense import showallrecords, save_newexpense, show_selectedExpense, update_expense, delete_expense, delete_records, delete_all_records
 
 eel.init('views')
 
@@ -46,6 +46,11 @@ def btn_delete(id):
 def delete_data(ids):
     ids = [int(i) for i in ids]
     msg = delete_records(ids)
+    eel.delete_return(msg)
+
+@eel.expose 
+def delete_all_data():
+    msg = delete_all_records()
     eel.delete_return(msg)
 
 eel.start('templates/index.html', size = pyautogui.size())

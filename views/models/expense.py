@@ -94,10 +94,23 @@ def delete_records(ids):
     try:
         connect = sqlite3.connect("views/database/Expense Tracker.db")
         cursor = connect.cursor()
- 
-        placeholders = ','.join('?' for _ in ids)
-        query = f"DELETE FROM ExpenseTracker WHERE Payee ({placeholders})"
-        cursor.execute(query, tuple(ids))
+        cursor.execute("DELETE FROM ExpenseTracker WHERE ID IN ({seq})".format(seq=','.join(['?']*len(ids))), ids)
+
+        connect.commit()
+        connect.close()
+        msg = "success"
+        return msg
+       
+    except Exception as Error:
+        print(Error)
+        msg = "failure"
+        return msg
+
+def delete_all_records():
+    try:
+        connect = sqlite3.connect("views/database/Expense Tracker.db")
+        cursor = connect.cursor()
+        cursor.execute("DELETE FROM ExpenseTracker")
 
         connect.commit()
         connect.close()

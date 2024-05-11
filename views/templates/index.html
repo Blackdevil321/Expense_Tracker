@@ -96,10 +96,7 @@
               data-bs-target="#split_expense_modal">Split Expense</button>
             <button id="delete_select_expense" type="button" class="btn btn-secondary btn-md" disabled
               onclick="delete_select_expense_js();">Delete Selected Expenses</button>
-            <button type="button" class="btn btn-secondary btn-md">Delete All Expense</button>
-            <!-- <button type="button" class="btn btn-secondary btn-md" data-bs-toggle="modal"
-              data-bs-target="#select_expenses_model">View Selected Expense's Details</button>
-            <button type="button" class="btn btn-secondary btn-md">Edit Selected Expense</button> -->
+            <button type="button" class="btn btn-secondary btn-md" onclick="delete_all_expense_js();">Delete All Expense</button>
             <button type="button" class="btn btn-secondary btn-md" id="download_expense">Download</button>
           </div>
           <hr class="border border-secondary border-2 opacity-40">
@@ -241,7 +238,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </body>
