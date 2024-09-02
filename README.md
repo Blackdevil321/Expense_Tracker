@@ -29,7 +29,7 @@ Follow these steps to set up Expense Tracker locally:
 git clone https://github.com/ravi300601/Expense_Tracker.git
 ```
 
-3. Navigate to the project directory:
+2. Navigate to the project directory:
 ```
 cd expense-tracker
 ```
